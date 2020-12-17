@@ -1,12 +1,83 @@
+mat-toolbar {
+  background-color: whitesmoke;
+}
+li {
+  padding: 1rem 2rem 1.15rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #ebebeb;
+  min-width: 80px;
+  margin: auto;
+}
+
+li:hover {
+  background-image: url("https://scottyzen.sirv.com/Images/v/button.png");
+  background-size: 100% 100%;
+
+  color: black;
+  animation: spring 300ms ease-out;
+  text-shadow: 0 -1px 0 black;
+  font-weight: bold;
+}
+li:active {
+  transform: translateY(4px);
+}
+
+@keyframes spring {
+  15% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(1.2, 1.1);
+  }
+  40% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(0.95, 0.95);
+  }
+  75% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(1.05, 1);
+  }
+  100% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: scale(1, 1);
+  }
+}
+
+#log {
+  transform: rotate(180deg);
+}
+
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+mat-icon {
+  width: 2rem;
+  height: 2rem;
+  font-size: 2rem;
+}
 
 a {
   text-decoration: none;
+  color: #164a41;
+  font-size: 25px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+a:hover {
   color: white;
+  text-decoration: underline;
+}
+#head:hover {
+  text-decoration: underline;
+  background-image: url("https://scottyzen.sirv.com/Images/v/button.png");
+  background-size: 100% 100%;
+
+  color: white;
+  animation: spring 300ms ease-out;
+  text-shadow: 0 -1px 0 black;
+  font-weight: bold;
 }
 
 ul {

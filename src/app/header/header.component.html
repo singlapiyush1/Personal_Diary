@@ -1,20 +1,45 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
   <span>
-    <a routerLink="/">MyMessages</a>
+    <a id="head" mat-button routerLink="/"
+      ><mat-icon id="icon" aria-hidden="false" aria-label="Example home icon"
+        >book</mat-icon
+      >PersonalDiary
+    </a>
   </span>
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
+      <a mat-button routerLink="/create" routerLinkActive
+        ><mat-icon aria-hidden="false" aria-label="Example home icon"
+          >post_add</mat-icon
+        >New Post</a
+      >
     </li>
     <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
+      <a mat-button routerLink="/auth/login" routerLinkActive
+        ><mat-icon aria-hidden="false" aria-label="Example home icon"
+          >login</mat-icon
+        >
+        Login</a
+      >
     </li>
     <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/auth/signup" routerLinkActive="mat-accent">Signup</a>
+      <a mat-button routerLink="/auth/signup" routerLinkActive
+        ><mat-icon aria-hidden="false" aria-label="Example home icon"
+          >login</mat-icon
+        >
+        Signup
+      </a>
     </li>
     <li *ngIf="userIsAuthenticated">
-      <button mat-button (click)="onLogout()">Logout</button>
+      <a mat-button (click)="onLogout()"
+        >Logout<mat-icon
+          id="log"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          >login</mat-icon
+        ></a
+      >
     </li>
   </ul>
 </mat-toolbar>

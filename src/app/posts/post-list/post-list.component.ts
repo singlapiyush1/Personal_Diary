@@ -17,41 +17,82 @@ export class PostListComponent implements OnInit, OnDestroy {
   //   { title: "Second Post", content: "This is the second post's content" },
   //   { title: "Third Post", content: "This is the third post's content" }
   // ];
+
   posts: Post[] = [];
   isLoading = false;
   totalPosts = 0;
-  postsPerPage = 2;
+  postsPerPage = 10;
   currentPage = 1;
   pageSizeOptions = [1, 2, 5, 10];
   userIsAuthenticated = false;
   userId: string;
+  count:boolean;
+
+  i:number;
+
+
   private postsSub: Subscription;
   private authStatusSub: Subscription;
+  alertt:any;
 
   constructor(
     public postsService: PostsService,
     private authService: AuthService
-  ) {}
+  ) {
 
+  }
+  // for(this.i=0;this.i<this.totalPosts;this.i++){
+  //   if(this.posts[this.i].creator == this.userId)
+  //   {
+  //    this.count=true;
+  //    console.log(this.count);
+  //   }
+
+  // }
   ngOnInit() {
     this.isLoading = true;
+    this.alertt=false;
+    this.count=false;
+    this.i=0;
     this.postsService.getPosts(this.postsPerPage, this.currentPage);
     this.userId = this.authService.getUserId();
-    this.postsSub = this.postsService
-      .getPostUpdateListener()
-      .subscribe((postData: { posts: Post[]; postCount: number }) => {
-        this.isLoading = false;
-        this.totalPosts = postData.postCount;
-        this.posts = postData.posts;
-      });
+
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authStatusSub = this.authService
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
         this.userId = this.authService.getUserId();
+
       });
+
+
+    this.postsSub = this.postsService.getPostUpdateListener()
+      .subscribe((postData: { posts: Post[]; postCount: number }) => {
+        this.isLoading = false;
+
+
+        this.posts = postData.posts;
+        this.totalPosts = postData.postCount;
+        for (let i = 0; i < this.totalPosts; i++) {
+          if(this.userId == this.posts[i].creator)
+          {
+            this.count=true;
+            console.log(this.count);
+          }
+
+        }
+
+      });
+
+
+
+
+
+
+
   }
+
 
   onChangedPage(pageData: PageEvent) {
     this.isLoading = true;
@@ -67,6 +108,10 @@ export class PostListComponent implements OnInit, OnDestroy {
     }, () => {
       this.isLoading = false;
     });
+  }
+  alert()
+  {
+    this.alertt=true;
   }
 
   ngOnDestroy() {
